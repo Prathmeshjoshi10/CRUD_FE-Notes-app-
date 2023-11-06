@@ -1,0 +1,25 @@
+<div class="container">
+    <mat-card class="responsive-card">
+      <mat-card-title>Sign In</mat-card-title>
+      <mat-card-content>
+        <form [formGroup]="signInForm" (ngSubmit)="onSignIn()">
+          <div class="input-container">
+            <mat-form-field class="example-full-width">
+              <mat-label>Email</mat-label>
+              <input matInput formControlName="email" placeholder="Email" />
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+              <mat-label>Password</mat-label>
+              <input matInput formControlName="password" type="password" placeholder="Password" />
+            </mat-form-field>
+          </div>
+          <div class="button-container">
+            <button mat-raised-button color="primary" [disabled]="signInForm.invalid">
+              Sign In
+            </button>
+          </div>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  

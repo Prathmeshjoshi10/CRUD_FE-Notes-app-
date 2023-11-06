@@ -1,0 +1,29 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Center the container vertically on the screen */
+  }
+  
+  .responsive-card {
+    width: 95%; /* On mobile phones */
+    max-width: 40%; /* On larger screens (computers) */
+  }
+  
+  .mat-card-content {
+    display: flex;
+    flex-direction: column; /* Display title and textarea in a column */
+  }
+  
+  .input-container {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+  }
+  
+  .button-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px; /* Add space between buttons */
+  }
+  

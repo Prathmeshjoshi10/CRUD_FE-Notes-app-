@@ -1,0 +1,58 @@
+<div *ngIf="!addNoteEnabled">
+  <div class="container">
+    <div class="example-form">
+      <form [formGroup]="searchForm">
+        <mat-form-field class="example-full-width">
+          <input
+            matInput
+            formControlName="search"
+            placeholder="Search From Your Notes"
+          />
+          <button mat-button matSuffix>
+            <mat-icon>search</mat-icon>
+          </button>
+        </mat-form-field>
+      </form>
+    </div>
+    <button
+      class="add-new-button mat-raised-button"
+      (click)="addNoteEnabled = true"
+    >
+      Add New Note
+    </button>
+  </div>
+  <mat-divider></mat-divider>
+
+  <div
+    class="card-container"
+    fxLayout="row wrap"
+    fxLayout.gt-xs="row wrap"
+    *ngIf="!addNoteEnabled"
+  >
+    <div
+      class="card"
+      fxFlex.gt-sm="20%"
+      fxFlex.gt-xs="50%"
+      *ngFor="let note of notes; let noteIndex = index"
+      (click)="noteSelected(note)"
+    >
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>{{ note.title }}</mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="mat-card-content">
+          {{ note.note }}
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>
+
+<div>
+  <app-add-edit-note
+    *ngIf="addNoteEnabled"
+    (close)="childClosed()"
+    [isAddeable]="addNoteEnabled"
+    [selectedNote]="selectedNote"
+  ></app-add-edit-note>
+</div>

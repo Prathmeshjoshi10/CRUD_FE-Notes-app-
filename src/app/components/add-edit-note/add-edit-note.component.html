@@ -1,0 +1,64 @@
+<div class="container">
+  <mat-card class="responsive-card">
+    <mat-card-title *ngIf="isAddeable && !isForView"
+      >Add your precious Note...</mat-card-title
+    >
+    <mat-card-title *ngIf="isEditable && !isForView"
+      >Edit your precious Note...</mat-card-title
+    >
+
+    <mat-card-content>
+      <form
+        [formGroup]="noteForm"
+        (ngSubmit)="onSubmit()"
+        *ngIf="(isEditable || isAddeable) && !isForView"
+      >
+        <div class="input-container">
+          <mat-form-field class="example-full-width">
+            <mat-label *ngIf="!isForView">Title</mat-label>
+            <input matInput formControlName="title" placeholder="" />
+          </mat-form-field>
+          <mat-form-field class="example-full-width">
+            <mat-label *ngIf="!isForView">Leave a Note</mat-label>
+            <textarea matInput formControlName="note" placeholder=""></textarea>
+          </mat-form-field>
+        </div>
+        <div class="button-container">
+          <button
+            mat-raised-button
+            color="primary"
+            [disabled]="noteForm.invalid"
+          >
+            Save
+          </button>
+          <button mat-stroked-button color="accent" (click)="onClose()">
+            Close
+          </button>
+        </div>
+      </form>
+      <!-- For View  -->
+      <div *ngIf="!isEditable && isForView">
+        <mat-card-header>
+          <mat-card-title>{{ selectedNote.title }}</mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="mat-card-content">
+          {{ selectedNote.note }}
+        </mat-card-content>
+        <mat-card-actions
+          ><button mat-raised-button color="primary" (click)="onEdit()">
+            Edit</button
+          ><button
+            mat-flat-button
+            color="warn"
+            (click)="onDelete(selectedNote._id)"
+          >
+            Delete
+          </button>
+          <button mat-stroked-button color="accent" (click)="onClose()">
+            Close
+          </button></mat-card-actions
+        >
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

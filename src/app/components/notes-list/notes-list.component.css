@@ -1,0 +1,52 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px; /* Optional: Add space on top and bottom */
+}
+
+.example-form {
+  flex-grow: 1; /* Allow the search form to expand and fill the available space */
+}
+
+.example-full-width {
+  width: 50%;
+}
+
+.add-new-button {
+  /* Optional: Add your button styling here */
+}
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  height: 20vh; /* Set the height to 20% of the screen */
+}
+
+.card {
+  margin: 5px; /* Optional: Add margin for spacing between cards */
+  width: 100%; /* Default to full width */
+}
+
+@media (min-width: 576px) {
+  .card {
+    width: 50%; /* On screens of width 576px and greater, display 2 cards per row */
+  }
+}
+
+@media (min-width: 992px) {
+  .card {
+    width: 20%; /* On screens of width 992px and greater, display 5 cards per row */
+  }
+}
+
+.mat-card-content {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    /* You can also add a max width to prevent extremely long content */
+    max-width: 100%; /* Adjust this as needed */
+  }
+
+/* Additional styling can be added to .card to customize the card appearance */
