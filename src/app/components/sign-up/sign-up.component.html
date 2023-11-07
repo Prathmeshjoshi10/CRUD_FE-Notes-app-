@@ -40,6 +40,37 @@
             <mat-label>Mobile</mat-label>
             <input matInput formControlName="mobile" placeholder="Mobile" />
           </mat-form-field>
+
+          <div formArrayName="optionalMobileNumbers">
+            <div
+              *ngFor="
+                let mobileControl of optionalMobileNumbers.controls;
+                let i = index
+              "
+              class="mobile-control"
+            >
+              <label for="mobile{{ i }}"
+                >Optional Mobile Number {{ i + 1 }}</label
+              >
+              <input
+                type="text"
+                id="mobile{{ i }}"
+                [formControlName]="i"
+                placeholder="Enter a 10-digit mobile number"
+              />
+              <button type="button" (click)="removeOptionalMobileNumber(i)">
+                Remove
+              </button>
+            </div>
+          </div>
+
+          <button
+            type="button"
+            (click)="addOptionalMobileNumber()"
+            [disabled]="optionalMobileNumbers.length >= 5"
+          >
+            Add Optional Mobile Number
+          </button>
         </div>
         <div class="button-container">
           <button

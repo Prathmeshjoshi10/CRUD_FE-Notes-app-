@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { UsersService } from 'src/app/services/users.service';
 import { Router } from '@angular/router';
 
@@ -25,11 +25,13 @@ export class SignUpComponent implements OnInit {
       password: ['', Validators.required],
       conpassword: ['', Validators.required],
       mobile: ['', Validators.required],
+      optionalMobileNumbers: this.fb.array([]),
     });
   }
   async onSubmit() {
     if (this.signupForm.valid) {
       const signupData = this.signupForm.value;
+      console.log('signUp data---->', signupData);
 
       (await this.usersService.signUp(signupData)).subscribe(
         (response: any) => {
@@ -38,5 +40,20 @@ export class SignUpComponent implements OnInit {
         }
       );
     }
+  }
+
+  get optionalMobileNumbers(): FormArray {
+    return this.signupForm.get('optionalMobileNumbers') as FormArray;
+  }
+
+  addOptionalMobileNumber() {
+    if (this.optionalMobileNumbers.length < 5) {
+      const control = this.fb.control('', [Validators.pattern(/^\d{10}$/)]);
+      this.optionalMobileNumbers.push(control);
+    }
+  }
+
+  removeOptionalMobileNumber(index: number) {
+    this.optionalMobileNumbers.removeAt(index);
   }
 }

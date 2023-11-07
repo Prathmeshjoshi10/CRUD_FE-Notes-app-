@@ -38,11 +38,7 @@ export class AddEditNoteComponent implements OnInit {
 
     if (isEmpty(this.selectedNote)) {
       this.isForView = false;
-      console.log('IN iFFFFFFFFFFF');
     } else {
-      console.log('IN ELSEEEEEEEEEi');
-      console.log('SelectedNote', this.selectedNote);
-
       this.isForView = true;
     }
 
